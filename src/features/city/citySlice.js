@@ -11,8 +11,8 @@ export const getCities = createAsyncThunk(
   async () => {
     try {
       const res = await client.get(`/regions`, 
-        { params: { locale: 'en_IN', query: 'Indonesia', type: 'CITY' }});
-      return res.data;
+        { params: { domain: 'ID', locale: 'en_GB', query: 'Bali'}});
+      return res.data.data;
     } catch (err) {
       console.log("error ==> ", err);
     }
@@ -22,13 +22,12 @@ export const getCities = createAsyncThunk(
 const citySlice = createSlice({
   name: "cities",
   initialState,
-  //perlu diperbaikin
   extraReducers: {
     [getCities.pending]: (state) => {
       state.loading = true;
     },
     [getCities.fulfilled]: (state, {payload}) => {
-      state.products = payload;
+      state.cities = payload;
       state.loading = false;
     },
     [getCities.rejected]: (state, action) => {

@@ -4,15 +4,20 @@ import CityCard from '../components/cards/CityCard'
 import DestinationCard from '../components/cards/DestinationsCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCities } from '../features/city/citySlice';
+import { getDestinations } from '../features/city/destinationSlice';
 
 export default function App() {
   const dispatch = useDispatch();
   const citiesData = useSelector((state) => state.cities.cities);
+  const destinations = useSelector((state) => state.destination.destinations)
 
   useEffect(() => {
     dispatch(getCities());
   }, [dispatch]);
-  console.log('data=> ', citiesData)
+
+  useEffect(() => {
+    dispatch(getDestinations());
+  }, [dispatch]);
 
   return (
     <View style={styles.container}>
@@ -21,62 +26,27 @@ export default function App() {
       <Text style={styles.text}>Open up App.js to start working on your app!</Text>
       <Text style={styles.texttitle}>Big Cities in Indonesia</Text>
       <ScrollView horizontal={true} style={styles.scrollView}>
-      <CityCard
-        navigate={""}
-        imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
-        title={'Bali'}
-        id={1}
-      />
-      <CityCard
-        navigate={""}
-        imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
-        title={'Bali'}
-        id={1}
-      />
-      <CityCard
-        navigate={""}
-        imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
-        title={'Bali'}
-        id={1}
-      />
-      <CityCard
-        navigate={""}
-        imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
-        title={'Bali'}
-        id={1}
-      />
+        {citiesData.filter((data) => data.type == 'CITY').map(data => (
+          <CityCard
+            navigate={""}
+              imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
+              title={data.regionNames.primaryDisplayName}
+              id={data.gaiaId}
+            />
+        ))}
       </ScrollView>
 
       <Text style={styles.texttitle}>Popular Destination</Text>
       <ScrollView horizontal={true} style={styles.scrollView}>
-      <DestinationCard
-        // navigate={""}
-        imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
-        title={'Nusa Dua Beach'}
-        id={1}
-        city={"Bali"}
-      />
-      <DestinationCard
-        // navigate={""}
-        imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
-        title={'Nusa Dua Beach'}
-        id={1}
-        city={"Bali"}
-      />
-      <DestinationCard
-        // navigate={""}
-        imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
-        title={'Nusa Dua Beach'}
-        id={1}
-        city={"Bali"}
-      />
-      <DestinationCard
-        // navigate={""}
-        imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
-        title={'Nusa Dua Beach'}
-        id={1}
-        city={"Bali"}
-      />
+      {destinations.filter((data) => data.type == 'POI').map(data => (
+          <DestinationCard
+              // navigate={""}
+            imageLink={"https://i.pinimg.com/750x/19/5f/6e/195f6ea6b7c43632e8e3abd0ed20bb25.jpg"}
+            title={data.regionNames.primaryDisplayName}
+            id={data.gaiaId}
+            city={"Bali"}
+            />
+      ))}
       </ScrollView>
       </ScrollView>
     </View>
