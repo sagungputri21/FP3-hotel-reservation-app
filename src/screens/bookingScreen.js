@@ -13,6 +13,14 @@ const BookingScreen = ({navigation}) => {
 
     localStorage.setItem("bookingItem", JSON.stringify(hotelItem));
 
+    const handleTotalPrice = () => {
+        const priceHotel = (localStorage.getItem('price'))
+        console.log("ini price di booking",priceHotel)
+        const totalPrice = (parseInt(priceHotel) * 2)
+        console.log("ini total price",totalPrice)
+    }
+
+    handleTotalPrice()
     return(
         <View style={styles.container}>
             <Text>CONTACT INFORMATION</Text>
@@ -35,6 +43,7 @@ const BookingScreen = ({navigation}) => {
                 secureTextEntry={false}
             />
             <Text>PRICE SUMMARY</Text>
+            <Text></Text>
             <CustomButton text="Continue" onPress={() =>navigation.navigate('Home')}/>
         </View>
     )

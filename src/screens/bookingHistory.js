@@ -2,36 +2,31 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Table, Row } from "react-native-table-component";
 import { StyleSheet, ScrollView } from 'react-native';
+import { DataTable } from "react-native-paper";
+
 
 const BookingHistoryPage = () => {
 
     const listIdName = (localStorage.getItem('bookingItem'))
+
+    const arrayOfDataHotel = listIdName !== null? JSON.parse(listIdName) : [];
+    // const arrayOfDataTotal = listTotal;
     return(
+        
         <View style={styles.container}>
+            <Text style={styles.text}>Hotel History</Text>
             <ScrollView horizontal={true}>
-                <Text>All Booking History</Text>
-                <View>
-                    <Table borderStyle={{borderColor: '#C1C0B9'}}>
-                      {/* <Row data={state.tableHead} widthArr={state.widthArr} style={styles.head} textStyle={styles.text}/> */}
-                        <Text>{listIdName}</Text>
-            
-                    </Table>
-                     {/* <ScrollView style={styles.dataWrapper}>
-                        <Table borderStyle={{borderColor: '#C1C0B9'}}>
-                            {
-                                data.map((dataRow, index) => (
-                                <Row
-                                    key={index}
-                                    data={dataRow}
-                                    widthArr={state.widthArr}
-                                    style={[styles.row, index%2 && {backgroundColor: '#ffffff'}]}
-                                    textStyle={styles.text}
-                                />
-                                ))
-                            }
-                        </Table>
-                    </ScrollView> */}
-                </View>
+                <DataTable style={styles.container}>
+                    <DataTable.Header style={styles.tableHeader}>
+                        <DataTable.Title>Hotel</DataTable.Title>
+                        <DataTable.Title>Price</DataTable.Title>
+                    </DataTable.Header>
+                    <DataTable.Row style={styles.tableHeader}>
+                        <DataTable.Cell>Hotel Roma Prague</DataTable.Cell>
+                        <DataTable.Cell>$200</DataTable.Cell>
+                    </DataTable.Row>
+                
+                </DataTable>
             </ScrollView>
         </View>
     )
@@ -39,75 +34,32 @@ const BookingHistoryPage = () => {
 
 export default BookingHistoryPage
 
-// import React, { Component } from 'react';
-// import { StyleSheet, View, ScrollView } from 'react-native';
-// import { Table, TableWrapper, Row } from 'react-native-table-component';
-// export default class BookingHistoryPage extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       tableHead: ['Head', 'Head2', 'Head3', 'Head4', 'Head5', 'Head6', 'Head7', 'Head8', 'Head9'],
-//       widthArr: [40, 60, 80, 100, 120, 140, 160, 180, 200]
-//     }
-//   }
-//   render() {
-//     const state = this.state;
-//     const data = [];
-//     for (let i = 0; i < 30; i += 1) {
-//       const dataRow = [];
-//       for (let j = 0; j < 9; j += 1) {
-//         dataRow.push(`${i}${j}`);
-//       }
-//       data.push(dataRow);
-//     }
-//     return (
-//       <View style={styles.container}>
-//         <ScrollView horizontal={true}>
-//           <View>
-//             <Table borderStyle={{borderColor: '#C1C0B9'}}>
-//               <Row data={state.tableHead} widthArr={state.widthArr} style={styles.head} textStyle={styles.text}/>
-//             </Table>
-//             <ScrollView style={styles.dataWrapper}>
-//               <Table borderStyle={{borderColor: '#C1C0B9'}}>
-//                 {
-//                   data.map((dataRow, index) => (
-//                     <Row
-//                       key={index}
-//                       data={dataRow}
-//                       widthArr={state.widthArr}
-//                       style={[styles.row, index%2 && {backgroundColor: '#ffffff'}]}
-//                       textStyle={styles.text}
-//                     />
-//                   ))
-//                 }
-//               </Table>
-//             </ScrollView>
-//           </View>
-//         </ScrollView>
-//       </View>
-//     )
-//   }
-// }
+
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    padding: 16, 
-    paddingTop: 30, 
-    backgroundColor: '#ffffff' 
-  },
-  head: { 
-    height: 50, 
-    backgroundColor: '#6F7BD9' 
-  },
-  text: { 
-    textAlign: 'center', 
-    fontWeight: '200' 
-  },
-  dataWrapper: { 
-    marginTop: -1 
-  },
-  row: { 
-    height: 40, 
-    backgroundColor: '#F7F8FA' 
-  }
-});
+    container: {
+        flex:1,
+        padding: 16, 
+        paddingTop: 20, 
+        backgroundColor: '#ffffff' 
+    },
+    
+    tableHeader: {
+      backgroundColor: '#DCDCDC',
+    },
+    head: { 
+        height: 50, 
+        backgroundColor: '#6F7BD9' 
+    },
+    text: { 
+        textAlign: 'center', 
+        fontWeight: '200',
+        fontSize:  '300'
+    },
+    dataWrapper: { 
+        marginTop: -1 
+    },
+    row: { 
+        height: 40, 
+        backgroundColor: '#F7F8FA' 
+      }
+  });

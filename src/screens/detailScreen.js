@@ -20,7 +20,7 @@ import { Image } from "react-native";
 import COLORS from "../components/color/color";
 
 
-const DetailScreen = ({navigation}) => {
+const DetailScreen = ({navigation, id, domain, locale}) => {
   const user = useSelector(selectUser)
   const dispatch = useDispatch()
   const [hotelName, setHotelName] = useState([])
@@ -58,11 +58,36 @@ const DetailScreen = ({navigation}) => {
     }
   }
 
+  const getDataPrice = async () => {
+    try{
+      const data = await client.get(
+        `hotels/offers`, 
+        {params: {adults_number: '1',
+          checkout_date: '2023-09-27',
+          domain: 'AE',
+          locale: 'en_GB',
+          hotel_id: '1105156',
+          checkin_date: '2023-09-26',
+          children_ages: '4,0'}}
+      )
+      setHotelPrice(data.data.stickyBar);
+    } catch (err) {
+      console.log("error=", err)
+    }
+  }
+
   useEffect(() => {
     getDataDetail()
   },[])
 
+  useEffect(() => {
+    getDataPrice()
+  },[])
+
   console.log("ini data detail",hotelName)
+  console.log("ini data price",hotelPrice)
+
+  localStorage.setItem("price", JSON.stringify(hotelPrice.displayPrice));
 
   return(
     <ScrollView showsVerticalScrollIndicator={false}
@@ -130,7 +155,7 @@ const DetailScreen = ({navigation}) => {
                     color: COLORS.grey,
                     marginLeft: 5,
                   }}>
-                  $200
+                  {hotelPrice.displayPrice}
                 </Text>
                 <Text
                   style={{
