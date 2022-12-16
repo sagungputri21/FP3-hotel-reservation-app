@@ -8,7 +8,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-const DestinationCard = ({id, title, imageLink, navigate, city}) => {
+const DestinationCard = ({id, title, imageLink, city}) => {
 
 //   const goDetail= () => {
 //     navigate("CityDetail", {id: id})
