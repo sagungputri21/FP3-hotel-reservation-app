@@ -31,6 +31,8 @@ const DetailScreen = ({navigation, id, domain, locale}) => {
 
   console.log("ini di detail, user=>", user)
 
+  localStorage.setItem("hotelItem", JSON.stringify({hotelName, hotelPrice}));
+
   const handleNavigate = () => {
     if(user!==null){
       navigation.navigate('BookingPage')

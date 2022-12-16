@@ -7,7 +7,8 @@ import { DataTable } from "react-native-paper";
 
 const BookingHistoryPage = () => {
 
-    const listIdName = (localStorage.getItem('bookingItem'))
+    const listIdName = (localStorage.getItem('hotelItem'))
+    console.log("ini data hotel di history", listIdName)
 
     const arrayOfDataHotel = listIdName !== null? JSON.parse(listIdName) : [];
     // const arrayOfDataTotal = listTotal;

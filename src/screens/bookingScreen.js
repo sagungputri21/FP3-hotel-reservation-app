@@ -4,23 +4,31 @@ import { View, Text, StyleSheet } from "react-native";
 import { useState } from "react";
 
 import CustomButton from "../components/button/customButton";
+import { useEffect } from "react";
 
 const BookingScreen = ({navigation}) => {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [phoneNumber, setPhoneNumber] = useState()
-    const [hotelItem, setHotelItem] = useState({ id: "1", name: "hotelA"})
+    const [count, setCount] = useState()
 
-    localStorage.setItem("bookingItem", JSON.stringify(hotelItem));
+    // localStorage.setItem("bookingItem", JSON.stringify(hotelItem));
 
     const handleTotalPrice = () => {
         const priceHotel = (localStorage.getItem('price'))
         console.log("ini price di booking",priceHotel)
-        const totalPrice = (parseInt(priceHotel) * 2)
-        console.log("ini total price",totalPrice)
+        const split = priceHotel.split('$')
+        const totalPrice = (parseInt(split[1]) *2)
+        setCount(totalPrice) 
+        
     }
+    console.log("ini total price",count)
 
-    handleTotalPrice()
+    useEffect(() => {
+        handleTotalPrice()   
+    },[])
+
+
     return(
         <View style={styles.container}>
             <Text>CONTACT INFORMATION</Text>
@@ -43,7 +51,7 @@ const BookingScreen = ({navigation}) => {
                 secureTextEntry={false}
             />
             <Text>PRICE SUMMARY</Text>
-            <Text></Text>
+            <Text>For 2 days: ${count}</Text>
             <CustomButton text="Continue" onPress={() =>navigation.navigate('Home')}/>
         </View>
     )
