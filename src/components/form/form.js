@@ -1,7 +1,7 @@
 import { View, StyleSheet, TextInput } from "react-native"
 import React from "react"
 
-const Login = ({value, setValue, placeholder, secureTextEntry}) => {
+const Form = ({value, setValue, placeholder, secureTextEntry}) => {
 
     return(
         <View style= {style.container}>
@@ -33,4 +33,4 @@ const style = StyleSheet.create({
     }
 })
 
-export default Login
+export default Form
