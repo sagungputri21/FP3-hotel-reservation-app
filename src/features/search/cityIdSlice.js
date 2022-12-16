@@ -40,5 +40,5 @@ const cityidSlice = createSlice({
   },
 });
 
-export const cityActions = cityidSlice.actions;
+export const cityidActions = cityidSlice.actions;
 export default cityidSlice.reducer;

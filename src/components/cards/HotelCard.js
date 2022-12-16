@@ -8,29 +8,51 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-const HotelCard = ({id, title, imageLink, navigate}) => {
-
-  const goDetail= () => {
-    navigate("HotelsDetail", {id: id})
-  }
-
+const HotelCard = ({ id, name, image, navigate, guest, star }) => {
   return (
-    <TouchableHighlight underlayColor="#1A1D27" onPressIn={goDetail}>
+    <TouchableHighlight underlayColor="#1A1D27" onPressIn={navigate}>
       <View style={styles.container}>
-        <View style={styles.overlayView}>
-          <Text style={styles.title}>{title}</Text>
+        <View>
+          <Image source={{ uri: image }} style={styles.image} />
+          <View style={styles.iconSave}>
+            <TouchableHighlight onPress={() => ""}>
+              <View>
+                <Icon
+                  name="favorite"
+                  size={20}
+                  // color={
+                  //   favorites?.find(
+                  //     favorite => fav?.id === id
+                  //   ) ? '#E0144C' : '#D6E4E5'
+                  // }
+                />
+              </View>
+            </TouchableHighlight>
+          </View>
         </View>
-        <View style={styles.overlayViewDarken}/>
-        <TouchableHighlight>
-          <Image
-            source={{ uri: imageLink }}
-            style={styles.image}
-          />
-        </TouchableHighlight>
+
+        <View>
+          <View>
+            <Text style={styles.title}>{name}</Text>
+            <View>
+              <Text>
+                <Icon />
+                {star}
+              </Text>
+              <Text>{guest} guests</Text>
+            </View>
+          </View>
+          <View>
+            <Text>{price}</Text>
+            <Text>/night</Text>
+          </View>
+        </View>
       </View>
     </TouchableHighlight>
   );
 };
+
+export default HotelCard;
 
 const styles = StyleSheet.create({
   container: {
@@ -39,9 +61,9 @@ const styles = StyleSheet.create({
     height: 150,
     maxHeight: 150,
     position: "relative",
-    borderRadius : 6,
-    overflow : "hidden",
-    marginLeft : 10,
+    borderRadius: 6,
+    overflow: "hidden",
+    marginLeft: 10,
   },
   image: {
     width: "100%",
@@ -64,7 +86,7 @@ const styles = StyleSheet.create({
     color: "white",
     paddingHorizontal: 8,
   },
-  overlayViewDarken : {
+  overlayViewDarken: {
     position: "absolute",
     zIndex: 40,
     width: 200,
@@ -74,10 +96,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingHorizontal: 5,
     paddingVertical: 10,
-    backgroundColor : "rgba(0,0,0,0.3)",
+    backgroundColor: "rgba(0,0,0,0.3)",
     alignItems: "flex-end",
-    bottom: 0
-  }
+    bottom: 0,
+  },
 });
-
-export default HotelCard;

@@ -14,24 +14,9 @@ import {
 import Icon from "react-native-vector-icons/MaterialIcons";
 import DatePicker from "react-native-date-picker";
 
-const Search = () => {
+const EditProfile = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-
-    const getCityId = useSelector(state => state.city.cityID);
-
-  const [checkin, setCheckin] = useState(new Date());
-  const [checkout, setCheckout] = useState(new Date());
-  const [guests, setGuests] = useState("");
-
-  const [cityID, setCityID] = useState("");
-
-  const handleSearch = () => {
-    dispatch(getCity(cityID));
-    dispatch(getHotels(getCityId));
-
-    navigation.navigate("Search Results", { checkin, checkout, guests });
-  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -98,7 +83,7 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default EditProfile;
 
 const styles = StyleSheet.create({
   container: {

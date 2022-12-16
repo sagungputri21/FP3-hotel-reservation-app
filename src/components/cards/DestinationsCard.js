@@ -10,16 +10,12 @@ import {
 
 const DestinationCard = ({id, title, imageLink, city}) => {
 
-//   const goDetail= () => {
-//     navigate("CityDetail", {id: id})
-//   }
-
   return (
     <TouchableHighlight underlayColor="#1A1D27" >
       <View style={styles.container}>
         <TouchableHighlight>
           <Image
-            source={{ uri: imageLink }}
+            source={imageLink}
             style={styles.image}
           />
         </TouchableHighlight>
@@ -37,8 +33,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: 275,
-    height: 250,
-    maxHeight: 250,
+    height: 235,
+    maxHeight: 215,
     position: "relative",
     borderRadius : 6,
     overflow : "hidden",
@@ -52,7 +48,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 50,
     width: 275,
-    height: 250,
+    height: 215,
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-end",
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingHorizontal: 5,
     paddingVertical: 10,
-    backgroundColor : "rgba(96, 93, 124, 1)",
+    backgroundColor : "rgba(0,0,0,0.5)",
     alignItems: "flex-end",
     bottom: 0
   }

@@ -8,19 +8,19 @@ const initialState = {
 
 export const getHotels = createAsyncThunk(
   "hotels/getHotels",
-  async (cityId, guests, checkin, checkout) => {
+  async cityId => {
     try {
       const res = await client.get(`/hotels/search`, 
         { params: { 
             domain: 'ID', 
             locale: 'en_GB', 
             region_id: `${cityId}`,
-            adults_number: `${guests}`,
-            checkin_date: `${checkin}`,
-            checkout_date: `${checkout}`,
+            adults_number: 1,
+            checkin_date: '2022-12-30',
+            checkout_date: '2023-01-1',
             sort_order: 'RECOMMENDED'
         }});
-      return res.data.data;
+      return res.data;
     } catch (err) {
       console.log("error ==> ", err);
     }
@@ -45,5 +45,5 @@ const searchSlice = createSlice({
   },
 });
 
-export const cityActions = searchSlice.actions;
+export const searchActions = searchSlice.actions;
 export default searchSlice.reducer;

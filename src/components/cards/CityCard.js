@@ -24,7 +24,7 @@ const CityCard = ({id, title, imageLink, navigate}) => {
         <View style={styles.overlayViewDarken}/>
         <TouchableHighlight>
           <Image
-            source={{ uri: imageLink }}
+            source={imageLink}
             style={styles.image}
           />
         </TouchableHighlight>

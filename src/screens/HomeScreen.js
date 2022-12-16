@@ -9,26 +9,19 @@ import { bigCities, destinations } from '../data/homeCityData';
 import Search from '../components/form/SearchForm';
 
 export default function App() {
-  const dispatch = useDispatch();
   // const citiesData = useSelector((state) => state.cities.cities);
   // const destinations = useSelector((state) => state.destination.destinations)
 
-  useEffect(() => {
-    dispatch(getCities());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getDestinations());
-  }, [dispatch]);
-
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
+      <View style={styles.textHeading}>
+      <Text style={styles.textContent}>Find your</Text>
+      <Text style={styles.textContent}>dream vacation here...</Text>
+      </View>
       <View>
         <Search />
       </View>
-      <ScrollView>
-      <Text style={styles.textDiah}>Halo Diahh, ini home page di Expo</Text>
-      <Text style={styles.text}>Open up App.js to start working on your app!</Text>
       <Text style={styles.texttitle}>Big Cities in Indonesia</Text>
       <ScrollView horizontal={true} style={styles.scrollView}>
         {/* {citiesData.filter((data) => data.type == 'CITY').map(data => (
@@ -41,7 +34,7 @@ export default function App() {
         ))} */}
         {bigCities.map(data => (
           <CityCard
-            imageLink={"./../../assets/city-image/bali.jpg"}
+            imageLink={data.image}
             title={data.city}
           />
         ))}
@@ -65,17 +58,19 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f8ff',
+    backgroundColor: '#f5f5f5',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  textDiah: {
+  textHeading: {
+    marginVertical: 20,
+    textAlign: "left",
+    paddingHorizontal: 24
+  },
+  textContent: {
     color: 'rgb(0, 75, 141)',
     fontWeight: "bold",
     fontSize: 18,
-    marginVertical: 10,
-    textAlign: "left",
-    paddingHorizontal: 24
   },
   texttitle: {
     color: 'rgb(0, 75, 141)',

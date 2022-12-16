@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import HomeScreen from '../screens/HomeScreen';
+import SearchScreen from '../screens/SearchScreen';
+import HotelDetailScreen from "../screens/HotelDetailScreen";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -27,6 +29,32 @@ export default function Navigation() {
               ),
             }}
           />
+          <BottomTab.Screen
+          name="Search Results"
+          component={SearchScreen}
+          options={{
+            tabBarButton: () => null,
+            headerShown: true,
+            headerTitle: 'Search Results',
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundColor: '#FFF',
+            },
+          }}
+        />
+        <BottomTab.Screen
+          name="Hotel Detail"
+          component={HotelDetailScreen}
+          options={{
+            tabBarButton: () => null,
+            headerShown: true,
+            headerTitle: 'Hotel Detail',
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundColor: '#FFF',
+            },
+          }}
+        />
 {/*   
           <BottomTab.Screen
             name="Favorites"
